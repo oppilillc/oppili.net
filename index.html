@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>OPPILI | TECH FIRST TO MAKE BUSINESS LAST</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="images/favicon.ico" rel="icon">
+
+
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        function appendLeadingZero(str) {
+            return (('' + str).length < 2 ? '0' + str : str);
+        }
+        function formatDate(date) {
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
+
+            return '' + appendLeadingZero(date.getUTCMonth()) + appendLeadingZero(date.getUTCDate()) + appendLeadingZero(date.getUTCFullYear()) +
+                appendLeadingZero(date.getUTCHours()) + appendLeadingZero(date.getUTCMinutes()) +
+                appendLeadingZero(date.getUTCSeconds());
+        }
+
+        function captcha() {
+            grecaptcha.execute('6LdAI8sUAAAAANuSl2C9fDRpAT9SgpjPFeoMYEZN', { action: 'submitform' }).then(function (token) {
+                console.log("validated captcha...", token); 
+                submitform(token);
+            });
+            // grecaptcha.execute();
+        }
+        function submitform(token) {
+           
+           
+            var elements = oppiliSurvey.elements;
+            var formData = JSON.stringify({
+                name: 'survey' + formatDate(new Date()),
+                customer: elements.customername.value,
+                phone: elements.phone.value,
+                email: elements.emailId.value,
+                company: elements.orgName.value,
+                comment: elements.description.value, 
+		tokem: token
+            });
+
+            console.log("formData:", formData);
+            $.ajax({
+                  type: "POST",
+                  url: "https://gnkrte6zvj.execute-api.us-east-1.amazonaws.com/survey/getridofpaper",
+                  data: formData,
+                  success: function(){ alert("Thank you for your inquiry. Someone will contact you soon."); document.location.href="/";},
+                  dataType: "json",
+                  contentType : "application/json"
+            });
+            event.preventDefault();
+        
+
+        }
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdAI8sUAAAAANuSl2C9fDRpAT9SgpjPFeoMYEZN"></script>
+    <script>
+        grecaptcha.ready(function () {
+            
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <!--==========================
+  Header
+  ============================-->
+    <header id="header" class="fixed-top">
+        <div class="container">
+
+            <div class="logo float-left">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+                <a href="#intro" class="scrollto"><img src="images/oppili-logo.png" alt="" class="img-fluid"></a>
+            </div>
+
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#intro">HOME</a></li>
+                    <li><a href="#the-possible">THE POSSIBLE</a></li>
+                    <li><a href="#who-is-oppili">WHO IS OPPILI?</a></li>
+                    <li><a href="#how-we-work">HOW WE WORK</a></li>
+                    <li><a href="#case-story">CASE STORY</a></li>
+                    <li><a href="#connect">CONNECT</a></li>
+                </ul>
+            </nav>
+            <!-- .main-nav -->
+
+        </div>
+    </header>
+    <!-- #header -->
+
+    <!--==========================
+    Panel 1
+  ============================-->
+    <section id="intro" class="clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="intro-img text-right">
+                        <img src="images/hero-img.png" alt="" style="max-width:90%">
+                    </div>
+
+                    <div class="static-btn">
+                        <button class="btn btn-s">Content <br>Management <br>Systems</button>
+                    </div>
+
+                    <div class="static-btn-1">
+                        <button class="btn btn-s">Apps</button>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 p-0">
+                    <!-- Row 1 -->
+                    <div class="row">
+                        <div class="col-md-12 p-0">
+                            <div class="intro-text">
+                                <h3>Save your <br>organization<br> millions </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row">
+                        <div class="col-md-3 p-0 bg-green">
+                            <h5>in dollars + <br>hours of <br>frustration </h5>
+                        </div>
+
+                        <div class="col-md-6 p-0 bg-lt">
+                            <h5>With exceptional technology that solves your problems and helps make business success
+                                sustainable.
+                            </h5>
+                        </div>
+
+                        <div class="col-md-4"></div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="row">
+                        <div class="col-md-12 p-0 bg-r">
+                            <h5>When your vision becomes possible for your company, <br>anything becomes possible for
+                                you.
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="static-btn-3">
+                        <button class="btn btn-s">Cloud <br>Based <br>Solutions</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- #intro -->
+
+    <!--==========================
+      Home section
+    ============================-->
+
+    <section>
+        <div class="container-fluid p-0 sec-bg-1">
+
+        </div>
+    </section>
+
+
+    <!--==========================
+    Panel 2 The Possible
+    ============================-->
+
+    <section class="section" id="the-possible">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="row bg-red">
+                        <div class="col-md-8 offset-md-4">
+                            <div class="title">
+                                <h4>A little over-promising? </h4>
+                                <p> Maybe. Maybe not, because teaming with our client partners, we made the impossible,
+                                    possible for clients - advancements, hero status, and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-4 p-0">
+                            <div class="title bg-grey">
+                                <h5>And now we’re ready to do the same for you.</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 offset-md-4 p-0">
+                            <div class="title bg-w">
+                                <p>We design and build a powerful range of <span>Apps, Cloud Based Solutions, and
+                                        Content Management
+                                        systems.</span> So essentially, we create high quality software to solve the
+                                    most pressing business problems across industries and companies. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 p-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="intro-img">
+                                <img src="images/hero-img-2.png" alt="" style="max-width:75%">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="poss">
+                                <p>Transparent pricing. Schedule adherence. <br> Simple delivery. Scalable and secure
+                                    solutions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="static-btn-4">
+                            <button class="btn btn-s">See our <br> Highlighted <br> Case Story </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid p-0 sec-bg-2">
+
+        </div>
+    </section>
+
+    <!--==========================
+     Panel 3
+    ============================-->
+    <section class="section" id="who-is-oppili">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-2">
+                            <div class="who">
+                                <h4> So Who is Oppili? </h4>
+                                <p>Oppili are leaders with powerful digital expertise and a small ninja team of
+                                    developers, engineers, programmers, and testers.
+                                    <br><br> We’re partners, problem solvers, listeners, responders, completers.
+                                    <br><br> We envision, plan, create, build, execute, and deliver.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="row ">
+                        <div class="col-md-6 text-right p-0">
+                            <div class="img">
+                                <img src="images/user.jpg" alt="" style="max-width:35%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-left  p-0">
+                            <div class="team-info">
+                                <h3>Mani Rangarajan</h3>
+                                <h4>Chief Architect</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 text-right p-0">
+                            <div class="team-info">
+                                <h3>Rick lavoie</h3>
+                                <h4>Creative Designer <br> Marketer with two heads -<br> creative artist (bigger) +<br>
+                                    digital strategy
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-left  p-0">
+                            <div class="img">
+                                <img src="images/user.jpg" alt="" style="max-width:35%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid p-0 sec-bg-3">
+
+        </div>
+    </section>
+    <!--==========================
+      Panel 4 HOW-WE-WORK
+    ============================-->
+
+    <section class="section" id="how-we-work">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 offset-md-1">
+                    <div class="title">
+                        <h4>How We Work</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-6 p-0">
+                    <div class="row ">
+                        <div class="col-md-12">
+
+                            <div class="intro-img text-right">
+                                <img src="images/hero-img-3.png" alt="" style="max-width:75%">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 p-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h5>It’s simple, really. <br> We </h5>
+                                <ul>
+                                    <li>1. work closely with you to envision and plan the impossible
+                                    <li>2. write the requirements and blueprint, and design the UX</li>
+                                    <li>3. manufacture components and build offshore to save you lots of money</li>
+                                    <li>4. Assemble and finalize in the U.S.</li>
+                                    <li>5. launch </li>
+                                </ul>
+
+                                <h5 style="margin-top:10px">Good things happen, you look great </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container-fluid p-0 sec-bg-4">
+
+        </div>
+    </section>
+
+    <!--==========================
+    Panel 5
+  ============================-->
+
+
+    <section class="section" id="case-story">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row" style="margin-bottom:2em">
+                        <div class="col-md-8">
+                            <div class="content">
+                                <h5>Highlighted Case Story:</h5>
+                                <h4>Johnson & Johnson / Janssen Mobile App</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <img src="images/capp.jpg" alt="" style="max-width:70%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content">
+                                <h5 style="font-size:16px">Overview and Business Need </h5>
+                                <p>Janssen is currently challenged with significant time delays, inefficiencies, and
+                                    extra costs when reconciling expenses into Concur associated with business and sales
+                                    meetings and special events. There is an ongoing risk
+                                    with inaccurate inputs of data such as names and addresses, adding to a flawed
+                                    database. Janssen needed a digital mobile App that will ensure speed, accuracy and
+                                    significant cost savings.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="content">
+                                <h5 style="font-size:16px">Project Description and Goals </h5>
+                                <p>The new App named “CAPP” will enable sales managers to focus on building
+                                    relationships, elevating partnerships and increasing sales opportunities. It will
+                                    streamline the process before the event date, enable the optimal
+                                    management during the day of, and empower users to complete the event by reconciling
+                                    all expenses into Concur successfully and accurately. The mobile App is very easy to
+                                    use, fast in completing tasks, and informative
+                                    with real time data and transparency into all aspects of their event management,
+                                    therefore empowering users to have more successful outcomes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="row ">
+                        <div class="col-md-12 janseen">
+                            <div>
+                                <img src="images/janseen.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div>
+                                <img src="images/janseen-1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container-fluid p-0 sec-bg-5">
+
+        </div>
+    </section>
+
+    <!--==========================
+    Contact
+  ============================-->
+
+
+    <section class="section" id="connect">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 contact-bg">
+                    <div class="contact-title">
+                        <h5>
+                            Let’s Connect <br>to Start a <br>Discussion
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        <div class="form">
+
+                            <form action="" method="post" name="oppiliSurvey" id="oppiliSurvey" role="form"
+                                class="contactForm">
+
+                                <div class="col-md-12 form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" name="customername" class="form-control" id="customername">
+                                </div>
+
+                                <div class="col-md-12  form-group ">
+                                    <label for="">Email</label>
+                                    <input type="email" class="form-control" name="email" id="emailId">
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="">Phone</label>
+                                    <input type="number" class="form-control" name="phone" id="phone" />
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="">Company</label>
+                                    <input type="text" class="form-control" name="company" id="orgName" />
+                                </div>
+
+                                <div class=" col-md-12 form-group">
+                                    <label for="">What Business problem can we solve ?</label>
+                                    <input type="text" class="form-control" name="comments" id="description" />
+                                </div>
+
+                                <div class="g-recaptcha" data-sitekey="6LdAI8sUAAAAANuSl2C9fDRpAT9SgpjPFeoMYEZN"></div>
+                                <!-- <div class="g-recaptcha" data-sitekey="6LdAI8sUAAAAANuSl2C9fDRpAT9SgpjPFeoMYEZN" data-size="invisible" data-callback="submitform()"></div> -->
+                                <div class="col-md-12 text-left">
+                                    <button type="button" onclick="captcha();" ontap="captcha();"
+                                        class="btn btn-submit">Submit</button>
+                                </div>
+
+
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!--==========================
+    Footer
+  ============================-->
+    <footer id="footer">
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Oppili</strong> 2019
+            </div>
+            <!-- <div class="credits">
+
+                Designed by <a href="#">Hado Consultech</a>
+            </div> -->
+        </div>
+    </footer>
+    <!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Uncomment below i you want to use a preloader -->
+    <!-- <div id="preloader"></div> -->
+
+    <!-- JavaScript Libraries -->
+    <!-- <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/mobile-nav/mobile-nav.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script> -->
+
+    <!-- Contact Form JavaScript File -->
+    <!-- <script src="contactform/contactform.js"></script> -->
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103306449-1'"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5733922.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-103306449-1');
+    </script>
+
+</body>
+
+</html>
